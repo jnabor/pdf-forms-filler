@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Layout from '../app/HomeLayout'
 import AuthLayout from '../components/auth/AuthLayout'
 import {
+  Avatar,
   Grid,
   Link,
   Container,
@@ -52,6 +53,11 @@ const useStyles = makeStyles((theme: Theme) =>
     submit: {
       height: '100%',
       margin: theme.spacing(3, 0, 2)
+    },
+    avatar: {
+      margin: 10,
+      width: 60,
+      height: 60
     }
   })
 )
@@ -68,18 +74,20 @@ const IndexPage: React.SFC<IndexPageProps> = () => {
 
   return (
     <div>
-      <Head>
-        <title>PDF Forms Filler</title>
-        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-      </Head>
       <Grid container component='main' className={classes.root}>
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Layout title='Molotov Home'>
+          <Layout title='PDF Forms Filler'>
             <CssBaseline />
             <Container maxWidth='xs'>
               <div className={classes.paper}>
+                <Avatar
+                  variant='square'
+                  alt='PFF'
+                  src='/static/icon.png'
+                  className={classes.avatar}
+                />
                 <Typography variant='h5' gutterBottom>
-                  PDF Form Filler™
+                  PDF Forms Filler™
                 </Typography>
                 <Typography variant='caption' gutterBottom>
                   Create and update your forms data in database.

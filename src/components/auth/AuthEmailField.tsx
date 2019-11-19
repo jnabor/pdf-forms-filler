@@ -54,7 +54,6 @@ const AuthEmailField: React.SFC<AuthEmailFieldProps> = () => {
       autoComplete='email'
       helperText={state.hint}
       onChange={e => validate(e.currentTarget.value)}
-      autoFocus
     />
   )
 }
