@@ -8,9 +8,6 @@ import { blue, green } from '@material-ui/core/colors'
 import NoSsr from '@material-ui/core/NoSsr'
 
 const defaultTheme = {
-  typography: {
-    fontFamily: ['Roboto', 'sans-serif'].join(',')
-  },
   palette: {
     primary: {
       light: '#5ea3ff',

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Router from 'next/router'
-import Head from 'next/head'
 import Layout from '../app/HomeLayout'
-import AuthLayout from '../components/auth/AuthLayout'
+
 import {
   Avatar,
   Grid,
@@ -10,13 +9,14 @@ import {
   Container,
   CssBaseline,
   Paper,
-  Typography
+  Typography,
+  Button
 } from '@material-ui/core'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
 import AuthButton from '../components/auth/AuthButton'
 import AuthEmailField from '../components/auth/AuthEmailField'
 import AuthPasswordField from '../components/auth/AuthPasswordField'
-import Footer from '../app/AppFooter'
 
 import {
   useTheme,
@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme: Theme) =>
     submit: {
       height: '100%',
       margin: theme.spacing(3, 0, 2)
+    },
+    demo: {
+      marginTop: theme.spacing(1),
+      color: theme.palette.grey[200]
     },
     avatar: {
       margin: 10,
@@ -95,6 +99,19 @@ const IndexPage: React.SFC<IndexPageProps> = () => {
                 <Typography variant='caption' gutterBottom>
                   Automate filling out PDF forms.
                 </Typography>
+                <Button
+                  type='submit'
+                  fullWidth
+                  variant='contained'
+                  size='large'
+                  color='secondary'
+                  endIcon={<ArrowForwardIcon />}
+                  onClick={() =>
+                    Router.push('/forms/EDSC-EMP5624-2019-10-001-E')
+                  }
+                  className={classes.demo}>
+                  Try Demo
+                </Button>
                 <form
                   className={classes.form}
                   onSubmit={e => submitHandler(e)}
