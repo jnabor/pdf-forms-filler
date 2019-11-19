@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Router from 'next/router'
 import Layout from '../app/HomeLayout'
 
@@ -17,6 +17,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import AuthButton from '../components/auth/AuthButton'
 import AuthEmailField from '../components/auth/AuthEmailField'
 import AuthPasswordField from '../components/auth/AuthPasswordField'
+import RandomImage from '../components/home/randomImg'
 
 import {
   useTheme,
@@ -30,13 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
       minHeight: '100vh'
-    },
-    image: {
-      backgroundImage: 'url(https://source.unsplash.com/random)',
-      backgroundRepeat: 'no-repeat',
-      backgroundColor: theme.palette.grey[50],
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
     },
     paper: {
       margin: theme.spacing(2),
@@ -140,7 +134,7 @@ const IndexPage: React.SFC<IndexPageProps> = () => {
             </Container>
           </Layout>
         </Grid>
-        <Grid item xs={false} sm={4} md={7} className={classes.image} />
+        <RandomImage />
       </Grid>
     </div>
   )

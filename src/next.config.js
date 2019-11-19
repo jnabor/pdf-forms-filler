@@ -1,5 +1,5 @@
 module.exports = {
-  //assetPrefix: process.env.NODE_ENV === 'production' ? '/molotov' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/molotov' : '',
   exportPathMap: function() {
     return {
       '/': { page: '/' },

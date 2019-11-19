@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Layout from '../../../app/AppLayout'
-import Router from 'next/router'
 
 import { Button } from '@material-ui/core'
 import GetAppIcon from '@material-ui/icons/GetApp'
@@ -21,14 +20,25 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
+interface FormState {
+  processing: boolean
+}
+
 export interface AuthProps {}
 
 const Auth: React.SFC<AuthProps> = () => {
   const classes = useStyles(useTheme())
+  const [state, setState] = useState<FormState>({
+    processing: false
+  })
 
   const submitHandler = (e: any) => {
     e.preventDefault()
     console.log('submit', e)
+  }
+
+  const genDoc = () => {
+    console.log('generating..')
   }
 
   return (
@@ -36,13 +46,14 @@ const Auth: React.SFC<AuthProps> = () => {
       <Button variant='outlined' disabled>
         Save
       </Button>
-      <Button type='submit'>Fill PDF</Button>
       <Button
         variant='outlined'
         component='span'
-        color='primary '
+        color='primary'
         endIcon={<GetAppIcon />}
-        onClick={() => {}}>
+        onClick={() => {
+          genDoc()
+        }}>
         Download PDF
       </Button>
     </Layout>
