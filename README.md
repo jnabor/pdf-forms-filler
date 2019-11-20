@@ -1,46 +1,10 @@
 # molotov-cocktail
 
-Next.js React.js AWS Amplify cocktail - An app boilerplate for hackathons and demos
+Demo for Automated PDF form filling from a database
 
-see demo @ https://sonabstudios.github.io/molotov/
-
----
-
-## Features
-
-### auth module
-
-- [ ] signin with google
-- [ ] signin with facebook
-- [ ] signin with email
-  - [ ] signup with email
-  - [ ] reset password
-- [ ] signout
-
-### user module
-
-- [ ] attributes
-- [ ] avatar
-
-### themes
-
-- [x] default
-- [ ] light
-- [ ] dark
-- [ ] joker
-
----
+see demo @ https://sonabstudios.github.io/pdf-forms-filler/
 
 ## Tech Stack
 
-- TypeScript
-- JavaScript
-- ReactJS
-- NextJS
-- Material-UI
-- Amplify
-- GraphQL
-- AWS AppSync
-- AWS Lambda
-- AWS Cognito
-- AWS DynamoDB
+- Front-end: TypeScript, Next, React
+- Back-end: API Gateway, AWS Lambda, S3
