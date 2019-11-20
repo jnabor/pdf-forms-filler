@@ -5,7 +5,7 @@ const apiUrl =
 
 let data1 = {
   id: '2011201908482221234',
-  organization: 'My Organization',
+  organization: 'Football Association of America',
   partner: {
     firstName: 'Sabrina',
     middleName: 'Yoshida',
@@ -34,7 +34,7 @@ let data1 = {
 
 let data2 = {
   id: '2093461908482221234',
-  organization: 'My Organization',
+  organization: 'International Boxing Federation',
   partner: {
     firstName: 'Jean',
     middleName: 'Snyder',
@@ -63,7 +63,7 @@ let data2 = {
 
 let data3 = {
   id: '2011232019048521234',
-  organization: 'My Organization',
+  organization: 'World Health Organization',
   partner: {
     firstName: 'Brett',
     middleName: 'Saad',

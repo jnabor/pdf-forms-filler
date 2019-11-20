@@ -67,7 +67,7 @@ const Forms: React.SFC<FormsProps> = () => {
   )
 
   const handleClick = (event: any, index: number) => {
-    appContext.selectIndex(index)
+    appContext.currentIndex = index
     Router.push('/forms/EDSC-EMP5624-2019-10-001-E')
   }
 
