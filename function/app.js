@@ -321,6 +321,7 @@ const index = async data => {
 
   pdfDoc.setAuthor('PDF Forms Filler')
   const pdfBytes = await pdfDoc.save()
+  console.log('length', pdfBytes.length)
   fs.writeFileSync('./out/' + createFilename(data), pdfBytes)
 
   console.log('pdf created...')
