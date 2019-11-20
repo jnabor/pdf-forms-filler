@@ -45,9 +45,7 @@ const Layout: React.SFC<LayoutProps> = ({ title, children }) => {
         <div className={classes.root}>
           <CssBaseline />
           <Header />
-          <Container className={classes.main} maxWidth='sm'>
-            {children}
-          </Container>
+          <Container className={classes.main}>{children}</Container>
           <Footer />
         </div>
       </Themer>

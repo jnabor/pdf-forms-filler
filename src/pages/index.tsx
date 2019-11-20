@@ -100,9 +100,7 @@ const IndexPage: React.SFC<IndexPageProps> = () => {
                   size='large'
                   color='secondary'
                   endIcon={<ArrowForwardIcon />}
-                  onClick={() =>
-                    Router.push('/forms/EDSC-EMP5624-2019-10-001-E')
-                  }
+                  onClick={() => Router.push('/forms')}
                   className={classes.demo}>
                   Try Demo
                 </Button>

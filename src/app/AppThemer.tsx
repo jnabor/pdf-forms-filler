@@ -21,9 +21,6 @@ const defaultTheme = {
       dark: '#232c37',
       contrastText: '#000'
     }
-  },
-  status: {
-    danger: 'orange'
   }
 }
 
