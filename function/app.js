@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { pdf, PDFDocument, rgb, StandardFonts, degrees } = require('pdf-lib')
+const { pdf, PDFDocument, rgb, StandardFonts, degrees } = require('./pdf-lib')
 
 //const P00_ROW_01 = 261 // section 1 : row 1
 //const P00_ROW_02 = 261 // section 1 : row 2
@@ -260,11 +260,10 @@ const tickAltWrittenFrench = (page, font) => {
 }
 
 const index = async data => {
-  // create new pdf document
-  // const pdfDoc = await PDFDocument.create()
-
   //create from existing
   const uint8Array = fs.readFileSync('./ESDC-EMP5624-E-DEMO.pdf')
+
+  console.log(uint8Array)
   const pdfDoc = await PDFDocument.load(uint8Array)
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
 
@@ -333,7 +332,7 @@ const data = {
     firstName: 'Jayson',
     middleName: '',
     lastName: 'Nabor',
-    phone: '34535 4534535',
+    phone: '789 7898 78979',
     ext: '7260',
     email: 'sonabstudios@gmail.com',
     oralEnglish: true,
