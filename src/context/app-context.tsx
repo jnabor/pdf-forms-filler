@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { CompareArrowsOutlined } from '@material-ui/icons'
 
 const apiUrl =
   'https://0drmo8s2x3.execute-api.us-west-2.amazonaws.com/dev/pdfform'
@@ -92,10 +93,6 @@ let data3 = {
 
 let db = [data1, data2, data3]
 
-export interface AppContextProviderProps {
-  children: any
-}
-
 export interface PersonInfo {
   firstName: string
   fiddleName: string
@@ -115,50 +112,74 @@ export interface Record {
   alternative: PersonInfo
 }
 
-export interface AppContextProviderState {
-  data: any[]
-  currentIndex: number
-  postFillForm(data: any, callback: (res: any) => void): void
-  selectIndex(index: number): void
-}
-
-const selectIndex = (index: number) => {
-  console.log(index)
-}
-
-const postFillForm = (data: any, callback: (res: any) => void) => {
-  console.log(data)
-  console.log('posting to API...')
-
-  const xhr = new XMLHttpRequest()
-  xhr.open('POST', apiUrl)
-  xhr.onreadystatechange = (event: any) => {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      callback(event.target)
-    }
-  }
-  xhr.setRequestHeader('Content-Type', 'application/json')
-  const msg = JSON.stringify(data)
-  xhr.send(msg)
-}
-
 const initState = {
   data: db,
+  currentData: db[0],
   currentIndex: 0,
-  postFillForm: postFillForm,
-  selectIndex: selectIndex
+  postFillForm: () => {},
+  selectIndex: () => {}
 }
 
 export const AppContext = React.createContext<AppContextProviderState>(
   initState
 )
 
-const AppContextProvider: React.SFC<AppContextProviderProps> = ({
-  children
-}) => {
-  const [state, setState] = useState({ ...initState })
+export interface AppContextProviderProps {
+  children: any
+}
 
-  return <AppContext.Provider value={initState}>{children}</AppContext.Provider>
+export interface AppContextProviderState {
+  data: any[]
+  currentData: any
+  currentIndex: number
+  postFillForm(data: any, callback: (res: any) => void): void
+  selectIndex(index: number): void
+}
+
+class AppContextProvider extends React.Component<
+  AppContextProviderProps,
+  AppContextProviderState
+> {
+  constructor(props: AppContextProviderProps) {
+    super(props)
+    this.state = {
+      ...initState,
+      postFillForm: this.postFillForm,
+      selectIndex: this.selectIndex
+    }
+  }
+
+  componentDidMount() {
+    console.log('index:', this.state.currentIndex)
+  }
+  selectIndex = (index: number) => {
+    console.log(index)
+    this.setState({ currentData: db[index], currentIndex: index })
+  }
+
+  postFillForm = (data: any, callback: (res: any) => void) => {
+    console.log(data)
+    console.log('posting to API...')
+
+    const xhr = new XMLHttpRequest()
+    xhr.open('POST', apiUrl)
+    xhr.onreadystatechange = (event: any) => {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        callback(event.target)
+      }
+    }
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    const msg = JSON.stringify(data)
+    xhr.send(msg)
+  }
+
+  render() {
+    return (
+      <AppContext.Provider value={this.state}>
+        {this.props.children}
+      </AppContext.Provider>
+    )
+  }
 }
 
 export default AppContextProvider

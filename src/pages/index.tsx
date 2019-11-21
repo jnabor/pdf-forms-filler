@@ -81,7 +81,7 @@ const IndexPage: React.SFC<IndexPageProps> = () => {
                 <Avatar
                   variant='square'
                   alt='PFF'
-                  src='/static/icon.png'
+                  src='https://sonabstudios.github.io/pdf-forms-filler/static/icon.png'
                   className={classes.avatar}
                 />
                 <Typography variant='h5' gutterBottom>

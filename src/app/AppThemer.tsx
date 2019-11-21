@@ -34,7 +34,10 @@ const Themer: React.SFC<ThemerProps> = ({ children }) => {
   return (
     <div>
       <Head>
-        <link rel='shortcut icon' href='/static/favicon.ico' />
+        <link
+          rel='shortcut icon'
+          href='https://sonabstudios.github.io/pdf-forms-filler/static/favicon.ico'
+        />
         <link
           href='https://fonts.googleapis.com/css?family=Roboto&display=swap'
           rel='stylesheet'></link>

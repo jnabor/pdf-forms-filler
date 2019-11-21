@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import Router from 'next/router'
 import Layout from '../../app/AppLayout'
 import { Toolbar, AppBar, IconButton, Button } from '@material-ui/core'
 import { AppContext } from '../../context/app-context'
+import Router from 'next/router'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
@@ -67,7 +67,8 @@ const Forms: React.SFC<FormsProps> = () => {
   )
 
   const handleClick = (event: any, index: number) => {
-    appContext.currentIndex = index
+    console.log(index)
+    appContext.selectIndex(index)
     Router.push('/forms/EDSC-EMP5624-2019-10-001-E')
   }
 

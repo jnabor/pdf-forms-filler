@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Layout from '../../../app/AppLayout'
 import { AppContext } from '../../../context/app-context'
 import Router from 'next/router'
@@ -72,6 +72,7 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 interface FormState {
+  data: any
   loading: boolean
   generated: boolean
   dlLink: string
@@ -84,13 +85,17 @@ const Auth: React.SFC<AuthProps> = () => {
   const appContext = useContext(AppContext)
 
   const [state, setState] = useState<FormState>({
+    data: appContext.currentData,
     loading: false,
     generated: false,
     dlLink: ''
   })
 
-  let data = appContext.data[appContext.currentIndex]
+  useEffect(() => {
+    console.log(appContext.currentIndex)
+  }, [])
 
+  console.log()
   const submitHandler = (e: any) => {
     e.preventDefault()
     console.log('submit', e)
@@ -100,7 +105,7 @@ const Auth: React.SFC<AuthProps> = () => {
     if (!state.loading) {
       console.log(appContext.currentIndex)
       setState({ ...state, loading: true, generated: false })
-      appContext.postFillForm(data, res => {
+      appContext.postFillForm(state.data, res => {
         console.log(res)
         const filename =
           'https://ss-pdfformsfiller.s3-us-west-2.amazonaws.com/' +
@@ -148,19 +153,27 @@ const Auth: React.SFC<AuthProps> = () => {
             </div>
           </Grid>
 
-          <Grid item xs={8}>
+          <Grid item xs={12}>
             <div className={classes.paper}>
               <Grid
                 container
                 direction='row'
                 justify='flex-end'
                 alignItems='center'>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
+                  <Button
+                    color='primary'
+                    variant='outlined'
+                    onClick={() => Router.push('/forms')}>
+                    List
+                  </Button>
+                </Grid>
+                <Grid item xs={3}>
                   <Button color='primary' variant='outlined' disabled>
                     Save
                   </Button>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                   <Button
                     className={classes.dlButton}
                     color='secondary'
@@ -172,7 +185,7 @@ const Auth: React.SFC<AuthProps> = () => {
                     Download
                   </Button>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                   <Button
                     variant='contained'
                     color='primary'
@@ -192,14 +205,13 @@ const Auth: React.SFC<AuthProps> = () => {
               )}
             </div>
           </Grid>
-          <Grid item xs={4}></Grid>
           <Grid item xs={12}>
             <div className={classes.paper}>
               <TextField
                 id='outlined-basic'
                 className={classes.textField}
                 label='Designated Referral Partner Organization Name'
-                value={data.organization}
+                value={state.data.organization}
                 margin='normal'
                 variant='outlined'
               />
@@ -216,7 +228,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='First Name'
-                value={data.partner.firstName}
+                value={state.data.partner.firstName}
                 margin='normal'
                 variant='outlined'
               />
@@ -228,7 +240,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Middle Name'
-                value={data.partner.middleName}
+                value={state.data.partner.middleName}
                 margin='normal'
                 variant='outlined'
               />
@@ -240,7 +252,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Last Name'
-                value={data.partner.lastName}
+                value={state.data.partner.lastName}
                 margin='normal'
                 variant='outlined'
               />
@@ -252,7 +264,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Telephone Number'
-                value={data.partner.phone}
+                value={state.data.partner.phone}
                 margin='normal'
                 variant='outlined'
               />
@@ -264,7 +276,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Extension'
-                value={data.partner.ext}
+                value={state.data.partner.ext}
                 margin='normal'
                 variant='outlined'
               />
@@ -310,7 +322,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Email'
-                value={data.partner.email}
+                value={state.data.partner.email}
                 margin='normal'
                 variant='outlined'
               />
@@ -327,7 +339,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='First Name'
-                value={data.alternative.firstName}
+                value={state.data.alternative.firstName}
                 margin='normal'
                 variant='outlined'
               />
@@ -339,7 +351,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Middle Name'
-                value={data.alternative.middleName}
+                value={state.data.alternative.middleName}
                 margin='normal'
                 variant='outlined'
               />
@@ -351,7 +363,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Last Name'
-                value={data.alternative.lastName}
+                value={state.data.alternative.lastName}
                 margin='normal'
                 variant='outlined'
               />
@@ -363,7 +375,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Telehone Number'
-                value={data.alternative.phone}
+                value={state.data.alternative.phone}
                 margin='normal'
                 variant='outlined'
               />
@@ -375,7 +387,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Extension'
-                value={data.alternative.ext}
+                value={state.data.alternative.ext}
                 margin='normal'
                 variant='outlined'
               />
@@ -420,7 +432,7 @@ const Auth: React.SFC<AuthProps> = () => {
                 id='outlined-basic'
                 className={classes.textField}
                 label='Email'
-                value={data.alternative.email}
+                value={state.data.alternative.email}
                 margin='normal'
                 variant='outlined'
               />

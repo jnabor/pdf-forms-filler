@@ -1,5 +1,4 @@
 module.exports = {
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/molotov' : '',
   exportPathMap: function() {
     return {
       '/': { page: '/' },
@@ -12,5 +11,7 @@ module.exports = {
         page: '/forms/EDSC-EMP5624-2019-10-001-E'
       }
     }
-  }
+  },
+  crossOrigin: 'anonymous'
+  //assetPrefix: '/pdf-forms-filler'
 }

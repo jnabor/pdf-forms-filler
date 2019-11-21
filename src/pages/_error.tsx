@@ -10,7 +10,7 @@ const errorPage: React.SFC<errorPageProps> = () => {
       <h1>Oops, something went wrong.</h1>
       <p>
         Try{' '}
-        <Link href='/'>
+        <Link href='/' as={process.env.BACKEND_URL + '/about'}>
           <a>going back</a>
         </Link>
       </p>
