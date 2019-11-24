@@ -52,7 +52,6 @@ function createData(
 
 const Forms: React.SFC<FormsProps> = () => {
   const classes = useStyles(useTheme())
-
   const appContext = useContext(AppContext)
 
   const rows = appContext.data.map(rec =>
@@ -66,10 +65,11 @@ const Forms: React.SFC<FormsProps> = () => {
     )
   )
 
-  const handleClick = (event: any, index: number) => {
-    console.log(index)
-    appContext.selectIndex(index)
-    Router.push('/forms/EDSC-EMP5624-2019-10-001-E')
+  const handleClick = (id: string) => {
+    //console.log(id)
+    //const data = appContext.data.find(d => d.id === id)
+    //console.log(data)
+    Router.push(`/forms/EDSC-EMP5624-2019-10-001-E/${id}`)
   }
 
   return (
@@ -107,7 +107,7 @@ const Forms: React.SFC<FormsProps> = () => {
                     <TableCell align='right'>
                       <IconButton
                         edge='start'
-                        onClick={() => handleClick(event, index)}
+                        onClick={() => handleClick(row.id)}
                         aria-label='home'>
                         <EditIcon />
                       </IconButton>

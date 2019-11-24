@@ -5,7 +5,7 @@ const apiUrl =
   'https://0drmo8s2x3.execute-api.us-west-2.amazonaws.com/dev/pdfform'
 
 let data1 = {
-  id: '2011201908482221234',
+  id: '8901201908482221234',
   organization: 'Football Association of America',
   partner: {
     firstName: 'Sabrina',
@@ -34,7 +34,7 @@ let data1 = {
 }
 
 let data2 = {
-  id: '2093461908482221234',
+  id: '1233461908482221234',
   organization: 'International Boxing Federation',
   partner: {
     firstName: 'Jean',
@@ -63,7 +63,7 @@ let data2 = {
 }
 
 let data3 = {
-  id: '2011232019048521234',
+  id: '5671232019048521234',
   organization: 'World Health Organization',
   partner: {
     firstName: 'Brett',
@@ -114,10 +114,7 @@ export interface Record {
 
 const initState = {
   data: db,
-  currentData: db[0],
-  currentIndex: 0,
-  postFillForm: () => {},
-  selectIndex: () => {}
+  postFillForm: () => {}
 }
 
 export const AppContext = React.createContext<AppContextProviderState>(
@@ -130,10 +127,7 @@ export interface AppContextProviderProps {
 
 export interface AppContextProviderState {
   data: any[]
-  currentData: any
-  currentIndex: number
   postFillForm(data: any, callback: (res: any) => void): void
-  selectIndex(index: number): void
 }
 
 class AppContextProvider extends React.Component<
@@ -144,33 +138,24 @@ class AppContextProvider extends React.Component<
     super(props)
     this.state = {
       ...initState,
-      postFillForm: this.postFillForm,
-      selectIndex: this.selectIndex
+      postFillForm: this.postFillForm
     }
-  }
-
-  componentDidMount() {
-    console.log('index:', this.state.currentIndex)
-  }
-  selectIndex = (index: number) => {
-    console.log(index)
-    this.setState({ currentData: db[index], currentIndex: index })
   }
 
   postFillForm = (data: any, callback: (res: any) => void) => {
     console.log(data)
     console.log('posting to API...')
 
-    const xhr = new XMLHttpRequest()
-    xhr.open('POST', apiUrl)
-    xhr.onreadystatechange = (event: any) => {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        callback(event.target)
-      }
-    }
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    const msg = JSON.stringify(data)
-    xhr.send(msg)
+    //const xhr = new XMLHttpRequest()
+    //xhr.open('POST', apiUrl)
+    //xhr.onreadystatechange = (event: any) => {
+    //  if (xhr.readyState === XMLHttpRequest.DONE) {
+    //    callback(event.target)
+    //  }
+    //}
+    //xhr.setRequestHeader('Content-Type', 'application/json')
+    //const msg = JSON.stringify(data)
+    //xhr.send(msg)
   }
 
   render() {
