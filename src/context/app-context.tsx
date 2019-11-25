@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { CompareArrowsOutlined } from '@material-ui/icons'
+import {
+  CompareArrowsOutlined,
+  SettingsRemoteRounded
+} from '@material-ui/icons'
 
 const apiUrl =
   'https://0drmo8s2x3.execute-api.us-west-2.amazonaws.com/dev/pdfform'
@@ -146,6 +149,7 @@ class AppContextProvider extends React.Component<
     console.log(data)
     console.log('posting to API...')
 
+    setTimeout(() => callback('finished'), 1000)
     //const xhr = new XMLHttpRequest()
     //xhr.open('POST', apiUrl)
     //xhr.onreadystatechange = (event: any) => {

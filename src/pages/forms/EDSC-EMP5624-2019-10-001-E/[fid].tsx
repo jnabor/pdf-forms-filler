@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, MouseEvent } from 'react'
 import Layout from '../../../app/AppLayout'
 import { AppContext } from '../../../context/app-context'
 import Router, { useRouter } from 'next/router'
@@ -56,9 +56,7 @@ export interface AuthProps {}
 const Auth: React.SFC<AuthProps> = () => {
   const classes = useStyles(useTheme())
   const appContext = useContext(AppContext)
-
   const router = useRouter()
-  const { fid } = router.query
 
   const [loading, setLoading] = useState<boolean>(false)
   const [generated, setGenerated] = useState<boolean>(false)
@@ -66,6 +64,7 @@ const Auth: React.SFC<AuthProps> = () => {
   const [data, setData] = useState<any>({})
 
   useEffect(() => {
+    const { fid } = router.query
     const data = appContext.data.find(d => d.id === fid)
     setData(data)
   })
@@ -76,22 +75,28 @@ const Auth: React.SFC<AuthProps> = () => {
     console.log('submit', e)
   }
 
-  const handleFillClick = () => {
+  const handleFillClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
     if (!loading) {
       setLoading(true)
       setGenerated(false)
 
-      console.log('posting to api...', data)
       appContext.postFillForm(data, res => {
         console.log(res)
-        const filename =
-          'https://ss-pdfformsfiller.s3-us-west-2.amazonaws.com/' +
-          JSON.parse(JSON.parse(res.response).body).filename
-        console.log('download', filename)
         setLoading(false)
         setGenerated(true)
-        setLink(filename)
       })
+
+      //appContext.postFillForm(data, res => {
+      //  console.log(res)
+      //  const filename =
+      //    'https://ss-pdfformsfiller.s3-us-west-2.amazonaws.com/' +
+      //    JSON.parse(JSON.parse(res.response).body).filename
+      //  console.log('download', filename)
+      //  setLoading(false)
+      //  setGenerated(true)
+      //  setLink(filename)
+      //})
     }
   }
 

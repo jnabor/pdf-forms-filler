@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import Router, { useRouter } from 'next/router'
 
 import { Grid, Typography, Button } from '@material-ui/core'
@@ -37,7 +37,7 @@ export interface HintsProps {
   loading: boolean
   generated: boolean
   link: string
-  handleFillClick(): void
+  handleFillClick(event: MouseEvent<HTMLButtonElement>): void
 }
 
 const Hints: React.SFC<HintsProps> = ({
@@ -81,7 +81,7 @@ const Hints: React.SFC<HintsProps> = ({
               variant='contained'
               color='primary'
               disabled={loading}
-              onClick={() => handleFillClick()}>
+              onClick={handleFillClick}>
               FILL TO PDF
             </Button>
           </Grid>
